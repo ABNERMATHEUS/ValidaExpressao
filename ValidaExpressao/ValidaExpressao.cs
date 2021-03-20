@@ -8,6 +8,7 @@ namespace ValidaExpressao
         {
 
             Pilha pilha = new Pilha(expressao.Length);
+            expressao = expressao.Replace(" ", "");
             var charVetor = expressao.ToCharArray();
 
             for(int i=0; i < expressao.Length; i++)
@@ -16,8 +17,10 @@ namespace ValidaExpressao
                 //ABERTO
                 if (posicao is '(')
                     pilha.empilhar(posicao);
-                
-                else if(posicao is '~')
+
+                else if (posicao is '~')
+                    pilha.empilhar(posicao);
+                else if (posicao is '^' or 'v')
                     pilha.empilhar(posicao);
                 
                /* else if(posicao is '→' && pilha.topo() is ')')
@@ -37,18 +40,14 @@ namespace ValidaExpressao
                             pilha.desempilhar();
                                              
                     }
-                    else if (posicao.ToString().Contains('a'))
+                    else if (posicao is 'a' or 'b')
                     {
                         if (pilha.topo() is '~')
                             pilha.desempilhar();
-                        
-                    }/*
-                    else if(posicao is '(')
-                    {
-                        
-                        if (pilha.topo() is '→')
+                        else if (pilha.topo() is '^' or 'v')
                             pilha.desempilhar();
-                    }*/
+                        
+                    }     
                     
                 }
             }

@@ -9,6 +9,8 @@ namespace ValidaExpressao.Tests
         [TestMethod("Verificar se a expressão é valida")]
         [DataRow("( )",true)]
         [DataRow("(~a)(~a)", true)]
+        [DataRow("(~a)(~b)", true)]
+        [DataRow("(~a^b)(~b v a)", true)]        
         //[DataRow("(~a)→(~a)", true)]
         [DataRow("( ))", false)]
         public void Verificar_expressao_valida(string expressao,bool status)
